@@ -29,7 +29,7 @@ else
 dosbox_LDFLAGS+=--memory-init-file 0
 endif
 if WEBASSEMBLY
-dosbox_LDFLAGS+=-s WASM=1 -s FORCE_FILESYSTEM=1 --shell-file $EMSDK/fastcomp/emscripten/src/shell_minimal.html
+dosbox_LDFLAGS+=-s WASM=1 -s FORCE_FILESYSTEM=1 --shell-file ../shells/shell_minimal_mod.html
 endif
 endif
 
