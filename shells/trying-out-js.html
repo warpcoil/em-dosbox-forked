@@ -57,13 +57,13 @@
           <h1>#</h1>
           <h2>#</h2>
         </div>
-        <a href="http://dosgames.djcsystems.com/index.html" class="button hidden"><span>Let's Go</span></a>
+        <a href="../index.html" class="button hidden"><span>Let's Go</span></a>
       </div>
     </header>
 
 
     <!-- <hr/> -->
-    <figure style="overflow:visible;" id="spinner"><div class="spinner"></div><center style="margin-top:0.5em"><strong>emscripten</strong></center></figure>
+    <figure style="overflow:visible;" id="spinner"><div class="spinner"></div></figure>
     <div class="emscripten" id="status">Downloading...</div>
     <div class="emscripten">
       <progress value="0" max="100" id="progress" hidden=1></progress>
@@ -72,6 +72,13 @@
       <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
     </div>
     <hr/>
+	
+	<div>
+	<script type='text/javascript'>
+			var game = window.location.pathname
+	</script>
+	<center style="margin-top:0.5em"><strong><a href="../manuals/carmen.html"><span>Instructions</span></a></strong></center>
+	</div>
 
     <script type='text/javascript'>
       var statusElement = document.getElementById('status');
