@@ -82,10 +82,20 @@
     <hr/>
 	
 	<div>
-	<script type='text/javascript'>
-			var game = window.location.pathname
-	</script>
-	<center style="margin-top:0.5em"><strong><a href="../manuals/carmen.html"><span>Instructions</span></a></strong></center>
+	<center style="margin-top:0.5em"><strong>
+	<p id="game"></p>
+	<script>
+      var pathArray = window.location.pathname.split('/');
+      var gameURI = pathArray[1];
+      var a = document.createElement('a');
+      var link = document.createTextNode("Instructions");
+      a.appendChild(link)
+      a.title = "This is Link";
+      a.href = "../manuals/" + gameURI + ".html";
+      document.body.appendChild(a);
+    </script>
+	</strong></center>
+	<!-- <center style="margin-top:0.5em"><strong><a href="../manuals/carmen.html"><span>Instructions!!!</span></a></strong></center> -->
 	</div>
 
     <script type='text/javascript'>
