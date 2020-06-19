@@ -78,25 +78,13 @@
       <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
     </div>
 	
-	<div>
-	<script>
-      var pathArray = window.location.pathname.split('/');
-      var gameURI = pathArray[1];
-      var a = document.createElement('a');
-	  var c = document.createElement('center');
-	  var s = document.createElement('strong');
-      var link = document.createTextNode("Instructions");
-      a.appendChild(link)
-      a.title = "Instructions";
-      a.href = "../manuals/" + gameURI + ".html";
-	  a.class = "button big alt"
-	  c.style = "margin-top:0.5em";
-      document.body.appendChild(a);
-	  document.body.appendChild(c);
-	  document.body.appendChild(s);
-    </script>
-	</div>
-
+ <script type='text/javascript'>
+    var d = document.createElement('div');
+    d.innerHTML = '<a href="../manuals/' + window.location.pathname.split('/')[1] + '.html" class="button big alt" title="Instructions">Instructions</a>';
+    d.style = 'text-align:center';
+    document.body.appendChild(d);
+  </script>
+	
     <script type='text/javascript'>
       var statusElement = document.getElementById('status');
       var progressElement = document.getElementById('progress');
