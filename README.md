@@ -31,15 +31,7 @@ Other issues
 * Compiling in Windows is not supported. The build process requires a
   Unix-like environment due to use of GNU Autotools. See Emscripten
   [issue 2208](https://github.com/kripken/emscripten/issues/2208).
-* Emscripten [issue 1909](https://github.com/kripken/emscripten/issues/1909)
-used to make large switch statements highly inefficient. It seems fixed now,
-but V8 JavaScript Engine [issue
-2275](http://code.google.com/p/v8/issues/detail?id=2275) prevents large switch
-statements from being optimized. Because of this, the simple, normal and
-prefetch cores are automatically transformed. Case
-statements for x86 instructions become functions, and an array of function
-pointers is used instead of the switch statements. The `--enable-funarray`
-configure option controls this and defaults to yes.
+* Currently the runtime expects a canvas to be present with the id of "canvas" because a querySelector exists as #canvas.  This is automatically generated but it's something to be aware of.
 * The same origin policy prevents access to data files when running via a
 file:// URL in some browsers. Use a web server such as
 `python -m SimpleHTTPServer` instead.
@@ -47,8 +39,6 @@ file:// URL in some browsers. Use a web server such as
 [dom.max\_script\_run\_time](http://kb.mozillazine.org/Dom.max_script_run_time)
  is set to a reasonable value that will allow you to regain control in case of
 a hang.
-* Firefox may use huge amounts of memory when starting asm.js builds which have
-not been minified.
 * The FPU code uses doubles and does not provide full 80 bit precision.
 DOSBox can only give full precision when running on an x86 CPU.
 
