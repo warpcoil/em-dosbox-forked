@@ -2901,7 +2901,7 @@ int main(int argc, char* argv[]) {
 		canvasStyle.imageRendering = "crisp-edges";
 		canvasStyle.imageRendering = "pixelated";
 	);
-	if (emscripten_set_pointerlockchange_callback(NULL, NULL, true,
+	if (emscripten_set_pointerlockchange_callback("#canvas", NULL, true,
 	                                              em_pointerlock_callback)
 	    == EMSCRIPTEN_RESULT_SUCCESS) {
 		use_capture_callback = true;
