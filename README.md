@@ -55,55 +55,37 @@ DOSBox can only give full precision when running on an x86 CPU.
 Compiling
 ---------
 
-Use the latest stable version of Emscripten (from the master branch). For
-more information see the the
-[Emscripten installation instructions](https://kripken.github.io/emscripten-site/docs/getting_started/downloads.html).
-Em-DOSBox depends on bug fixes and new features found in recent versions of
-Emscripten. Some Linux distributions have packages with old versions, which
-should not be used.
+The use of the legacy asmjs backend of emscripten is not recommended and not \[currently\] tested, consider another fork.  This version specifically targets web assembly.  To build you will need the LATEST version of Emscripten (as of 17/09/2020).
 
-First, create `./configure` by running `./autogen.sh`. Then
-configure with `emconfigure ./configure` and build with `make`.
-This will create `src/dosbox.js` which contains DOSBox and `src/dosbox.html`,
-a web page for use as a template by the packager. These cannot be used as-is.
-You need to provide DOSBox with files to run and command line arguments for
-running them.
+First we have to build GNU compatible configure scripts, this requires Autotools, automake, autoconf etc
 
-This branch supports SDL 2 and uses it by default. Emscripten will
-automatically fetch SDL 2 from Emscripten Ports and build it. Use of `make -j`
-to speed up compilation by running multiple Emscripten processes in parallel
-[may break this](https://github.com/kripken/emscripten/issues/3033).
-Once SDL 2 has been built by Emscripten, you can use `make -j`.
-To use a different pre-built copy of Emscripten SDL 2, specify a path as in
-`emconfigure ./configure --with-sdl2=/path/to/SDL-emscripten`. To use SDL 1,
-give a `--with-sdl2=no` or `--without-sdl2` argument to `./configure`.
+```./autogen.sh```
 
-Emscripten emterpreter sync is used by default. This enables more DOSBox
-features to work, but requires an Emscripten version after 1.29.4 and may
-cause a small performance penalty. To disable use of emterpreter sync,
-add the `--disable-sync` argument to `./configure`. When sync is used,
-the Emscripten
-[memory initialization file](https://kripken.github.io/emscripten-site/docs/optimizing/Optimizing-Code.html#memory-initialization)
-is enabled, which means `dosbox.html.mem` needs to be in the same folder as
-`dosbox.js`. The memory initialization file is large. Serve it in compressed
-format to save bandwidth.
+We then need to run the configure script targetting web assembly
 
-WebAssembly
------------
+```./configure --enable-wasm```
 
-[WebAssembly](https://github.com/kripken/emscripten/wiki/WebAssembly) is a
-binary format which is meant to be a more efficient replacement for asm.js.
-To build to WebAssembly instead of asm.js, the `-s WASM=1` option needs to
-be added to the final `emcc` link command. There is no need to rebuild the
-object files. You can do this using the `--enable-wasm` option when running
-`./configure`. Since WebAssembly is still under very active development, use
-the latest incoming Emscripten and browser development builds like
-[Firefox Nightly](https://nightly.mozilla.org/) and
-[Chrome Canary](https://www.google.com/chrome/browser/canary.html).
+We can then build the application
 
-Building with WebAssembly changes the dosbox.html file. Files packaged
-using a dosbox.html without WebAssembly will not work with a WebAssembly
-build.
+```emmake make```
+
+All relevant files are located in src/
+
+Running basic DOS shell
+-----------------------
+
+Enter the src/ directory
+
+```cd src```
+
+And run any compliant static HTTP Server, for example:
+
+```python2 -m SimpleHTTPServer```
+
+With your browser, set url to http://localhost:8000/dosbox.html to be presented with a basic DOS shell:
+
+
+
 
 Running DOS Programs
 --------------------
