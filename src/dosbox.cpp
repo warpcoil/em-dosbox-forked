@@ -158,7 +158,11 @@ static Bitu Normal_Loop(void) {
 	if (SDL_TICKS_PASSED(ticksEntry, last_sleep + 10)) {
 		if (nosleep_lock == 0) {
 			last_sleep = ticksEntry;
+#if defined(__asmjs__)
 			emscripten_sleep_with_yield(1);
+#else
+			emscripten_sleep(1);
+#endif
 			ticksEntry = GetTicks();
 		} else if (SDL_TICKS_PASSED(ticksEntry, last_sleep + 2000) &&
 		           !SDL_TICKS_PASSED(ticksEntry, last_loop + 200)) {
@@ -363,7 +367,11 @@ increaseticks:
 #elif defined(EMTERPRETER_SYNC)
 			if (nosleep_lock == 0) {
 				last_sleep = ticksNew;
+#if defined(__asmjs__)
 				emscripten_sleep_with_yield(1);
+#else
+				emscripten_sleep(1);
+#endif
 			}
 #endif
 			ticksDone -= GetTicks() - ticksNew;

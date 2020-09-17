@@ -1825,7 +1825,11 @@ Bitu DEBUG_Loop(void) {
 	PIC_runIRQs();
 #if defined(EMSCRIPTEN)
 #if defined(EMTERPRETER_SYNC)
+#if defined(__asmjs__)
 	emscripten_sleep_with_yield(1);
+#else
+	emscripten_sleep(1); //Yield has no effect on wasm, wasm mode does not have "strict yield checking"
+#endif
 #endif
 #else
 	SDL_Delay(1);

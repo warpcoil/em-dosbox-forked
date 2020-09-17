@@ -2081,7 +2081,11 @@ static void GUI_StartUp(Section * sec) {
 			}
 			if (exit_splash) break;
 #if defined(EMSCRIPTEN) && defined(EMTERPRETER_SYNC)
+#if defined(__asmjs__)
 			emscripten_sleep_with_yield(1);
+#else
+			emscripten_sleep(1);
+#endif
 #endif
 
 			if (ct<1) {

@@ -82,7 +82,7 @@ public:
 		for (char d = 0;d < DOS_DRIVES;d++) {
 			if (!Drives[d]) continue;
 
-			char root[7] = {'A'+d,':','\\','*','.','*',0};
+			char root[7] = {static_cast<char>('A'+d),':','\\','*','.','*',0};
 			bool ret = DOS_FindFirst(root,DOS_ATTR_VOLUME);
 			if (ret) {
 				dta.GetResult(name,size,date,time,attr);
@@ -1598,7 +1598,11 @@ void WGET::Run(void) {
 		attr.onerror = downloadFailed;
 		fetchdone = false;
 		emscripten_fetch_t *fetch = emscripten_fetch(&attr, url.c_str());
+#if defined(__asmjs__)
 		while (!fetchdone) emscripten_sleep_with_yield(10);
+#else
+		while (!fetchdone) emscripten_sleep(10);
+#endif
 		if (fetchsuccess) {
 			Bit16u fhandle;
 			if (!DOS_CreateFile(outname.c_str(),OPEN_WRITE,&fhandle)) {
