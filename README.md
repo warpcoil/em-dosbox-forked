@@ -28,7 +28,7 @@ Other issues
 * Game save files are written into the Emscripten file system, which is by
   default an in-memory file system. Saved games will be lost when you close
   the web page.
-* Compiling in Windows is not supported. The build process requires a
+* Compiling in Windows is supported via Windows Subsystem for Linux. The build process requires a
   Unix-like environment due to use of GNU Autotools. See Emscripten
   [issue 2208](https://github.com/kripken/emscripten/issues/2208).
 * Currently the runtime expects a canvas to be present with the id of "canvas" because a querySelector exists as #canvas.  This is automatically generated but it's something to be aware of.
