@@ -20,16 +20,16 @@ EXTRA_DIST = winres.rc dosbox.ico
 if EMSCRIPTEN_BUILD
 dosbox_LDFLAGS=-s TOTAL_MEMORY=134217728 -s ALLOW_MEMORY_GROWTH=0
 CLEANFILES=dosbox.js dosbox.html.mem dosbox.js.orig.js dosbox.js.tmp.js
-if EMTERPRETER
-dosbox_LDFLAGS+=-s EMTERPRETIFY=1 -s EMTERPRETIFY_ASYNC=1 -s EMTERPRETIFY_WHITELIST=@emterpretify.txt -s FETCH=1
-EXTRA_dosbox_DEPENDENCIES=emterpretify.txt
-else
+#if EMTERPRETER
+#dosbox_LDFLAGS+=-s EMTERPRETIFY=1 -s EMTERPRETIFY_ASYNC=1 -s EMTERPRETIFY_WHITELIST=@emterpretify.txt -s FETCH=1
+#EXTRA_dosbox_DEPENDENCIES=emterpretify.txt
+#else
 # Memory init file is huge and it doesn't save bandwith even if using gzip.
 # It is only required when using emterpreter.
-dosbox_LDFLAGS+=--memory-init-file 0
-endif
+#dosbox_LDFLAGS+=--memory-init-file 0
+#endif
 if WEBASSEMBLY
-dosbox_LDFLAGS+=-s WASM=1 -s FORCE_FILESYSTEM=1 --shell-file ../shells/uplink.html
+dosbox_LDFLAGS+=-s WASM=1 -s FORCE_FILESYSTEM=1 -s FETCH=1 --shell-file ../shells/uplink.html
 endif
 endif
 
