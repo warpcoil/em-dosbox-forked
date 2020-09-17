@@ -74,7 +74,7 @@ And run any compliant static HTTP Server, for example:
 
 With your browser, set url to http://localhost:8000/dosbox.html to be presented with a basic DOS shell:
 
-![DosBox](https://raw.githubusercontent.com/warpcoil/em-dosbox/get-it-working/dosbox.png)
+![DosBox](https://raw.githubusercontent.com/warpcoil/em-dosbox/master/dosbox.png)
 
 Running DOS Programs
 --------------------
