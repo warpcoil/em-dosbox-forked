@@ -29,7 +29,7 @@ CLEANFILES=dosbox.js dosbox.html.mem dosbox.js.orig.js dosbox.js.tmp.js
 #dosbox_LDFLAGS+=--memory-init-file 0
 #endif
 if WEBASSEMBLY
-dosbox_LDFLAGS+=-s WASM=1 -s FORCE_FILESYSTEM=1 -s FETCH=1 --shell-file ../shells/uplink.html
+dosbox_LDFLAGS+=-s WASM=1 -s FORCE_FILESYSTEM=1 -s FETCH=1 --shell-file ../shells/shell_minimal_mod.html
 endif
 endif
 
