@@ -1,0 +1,19 @@
+name: build-em-dosbox
+on: [push]
+jobs:
+  job_id:
+    name: build 
+    runs-on: ubuntu-latest
+    steps:
+        - name: Install GNU Autotools
+          run: sudo apt-get install autotools-dev autoconf automake
+        - name: Install Emscripten [latest]
+          uses: mymindstorm/setup-emsdk@v6
+        - name: Checkout repository
+          uses: actions/checkout@v2
+        - name: Configure and Build
+          run: |
+            cd em-dosbox
+            ./autogen.sh
+            emconfigure ./configure --enable-wasm
+            emmake make
