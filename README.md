@@ -1,6 +1,8 @@
 DOSBox ported to Emscripten
 ===========================
 
+![build-em-dosbox](https://github.com/warpcoil/em-dosbox/workflows/build-em-dosbox/badge.svg)
+
 About
 -----
 
