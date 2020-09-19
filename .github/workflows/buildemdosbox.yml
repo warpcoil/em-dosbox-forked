@@ -14,5 +14,5 @@ jobs:
         - name: Configure and Build
           run: |
             ./autogen.sh
-            emconfigure ./configure --enable-wasm
+            emconfigure ./configure --enable-wasm --host=none-none-none
             emmake make
