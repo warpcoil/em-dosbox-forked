@@ -24,9 +24,14 @@ not been fully re-structured for running as an Emscripten main loop, most
 functionality is available thanks to emterpreter sync. A few programs can
 still run into problems due to paging exceptions.
 
+**This is a highly experimental version that implements most of the incoming branch
+of DOSBox, there are still sections to port (namely a rewrite of the SDL____.cpp code).**
+
 Other issues
 ------------
 
+* This version uses the latest "incoming" SVN branch of DOSBox hosted at Sourceforge, updated to 20/09/2020,
+  the SDL UI code has not yet been merged, the application should run "fine" with the old codebase.
 * Game save files are written into the Emscripten file system, which is by
   default an in-memory file system. Saved games will be lost when you close
   the web page.
