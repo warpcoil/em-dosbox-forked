@@ -11,8 +11,6 @@ jobs:
         - uses: mymindstorm/setup-emsdk@v6
         - name: Checkout repository
         - uses: actions/checkout@v2
-        - name: Using compile time flags
-        - run: echo "emconfigure ./configure --enable-wasm --disable-opengl"
         - name: Configure and Build
         - run: |
             cd em-dosbox
