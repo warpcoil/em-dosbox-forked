@@ -40,7 +40,6 @@
 #include "cross.h"
 #include "SDL.h"
 
-#include "version.h"
 #include "dosbox.h"
 #include "video.h"
 #include "mouse.h"
@@ -56,7 +55,7 @@
 #include "cross.h"
 #include "control.h"
 
-#define MAPPERFILE "mapper-" VERSION ".map"
+//#define MAPPERFILE "mapper-" VERSION ".map"
  //#define DISABLE_JOYSTICK
 
 #if C_OPENGL
@@ -2653,8 +2652,8 @@ void Config_Add_SDL() {
 	Pstring = Pmulti->GetSection()->Add_string("inactive", Property::Changeable::Always, "normal");
 	Pstring->Set_values(inactt);
 
-	Pstring = sdl_sec->Add_path("mapperfile", Property::Changeable::Always, MAPPERFILE);
-	Pstring->Set_help("File used to load/save the key/event mappings from. Resetmapper only works with the default value.");
+	//Pstring = sdl_sec->Add_path("mapperfile", Property::Changeable::Always, MAPPERFILE);
+	//Pstring->Set_help("File used to load/save the key/event mappings from. Resetmapper only works with the default value.");
 
 #if !SDL_VERSION_ATLEAST(2,0,0)
 	Pbool = sdl_sec->Add_bool("usescancodes", Property::Changeable::Always, true);
@@ -2875,8 +2874,8 @@ int main(int argc, char* argv[]) {
 		if (control->cmdline->FindString("-opencaptures", editor, true)) launchcaptures(editor);
 		if (control->cmdline->FindExist("-eraseconf")) eraseconfigfile();
 		if (control->cmdline->FindExist("-resetconf")) eraseconfigfile();
-		if (control->cmdline->FindExist("-erasemapper")) erasemapperfile();
-		if (control->cmdline->FindExist("-resetmapper")) erasemapperfile();
+		//if (control->cmdline->FindExist("-erasemapper")) erasemapperfile();
+		//if (control->cmdline->FindExist("-resetmapper")) erasemapperfile();
 
 		/* Can't disable the console with debugger enabled */
 #if defined(WIN32) && !(C_DEBUG)
