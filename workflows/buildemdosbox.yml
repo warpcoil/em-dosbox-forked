@@ -13,5 +13,5 @@ jobs:
         - run: |
             cd em-dosbox
             ./autogen.sh
-            emconfigure ./configure --enable-wasm
+            emconfigure ./configure --enable-wasm --disable-opengl
             emmake make
