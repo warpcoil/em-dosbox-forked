@@ -329,7 +329,7 @@ extern bool CPU_CycleAutoAdjust;
 bool startup_state_numlock = false;
 bool startup_state_capslock = false;
 
-#ifdef C_SDLGFX
+//#ifdef C_SDLGFX
 
 void GFX_SetTitle(Bit32s cycles, Bits frameskip, bool paused) {
 	char title[200] = { 0 };
@@ -2563,9 +2563,9 @@ void GFX_ShowMsg(char const* format, ...) {
 	if (!no_stdout) printf("%s", buf); //Else buf is parsed again.
 }
 
-#else  // !C_SDLGFX
-void GUI_StartUp(Section * sec) { }
-#endif
+//#else  // !C_SDLGFX
+//void GUI_StartUp(Section * sec) { }
+//#endif
 
 void Config_Add_SDL() {
 	Section_prop* sdl_sec = control->AddSection_prop("sdl", &GUI_StartUp);
@@ -2928,7 +2928,7 @@ int main(int argc, char* argv[]) {
 		setbuf(stderr, NULL);
 #endif
 
-#if defined(EMSCRIPTEN) && defined(C_SDLGFX)
+#if defined(EMSCRIPTEN) //&& defined(C_SDLGFX)
 		EM_ASM(
 			// Don't copy canvas image back into RAM in SDL_LockSurface()
 			Module['screenIsReadOnly'] = true;
@@ -2963,9 +2963,9 @@ int main(int argc, char* argv[]) {
 		putenv(const_cast<char*>("SDL_DISABLE_LOCK_KEYS=1"));
 #endif
 		if (SDL_Init(SDL_INIT_NOPARACHUTE
-#ifdef C_SDLGFX
+//#ifdef C_SDLGFX
 			| SDL_INIT_VIDEO
-#endif
+//#endif
 			/* SDL2 for Emscripten doesn't support this because it lacks threads.
 			 * DOSBox uses SDL_Sleep() and SDL_GetTicks(), which seem to work anyways.
 			 */
