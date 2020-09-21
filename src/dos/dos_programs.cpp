@@ -1503,6 +1503,7 @@ public:
 				return;
 			}
 
+#if !SDL_VERSION_ATLEAST(2,0,0)
 			MSCDEX_SetCDInterface(CDROM_USE_SDL, -1);
 			// create new drives for all images
 			std::vector<DOS_Drive*> isoDisks;
@@ -1546,7 +1547,9 @@ public:
 				tmp += "; " + paths[i];
 			}
 			WriteOut(MSG_Get("PROGRAM_MOUNT_STATUS_2"), drive, tmp.c_str());
-
+#else
+			WriteOut(MSG_Get("MSCDEX_LIMITED_SUPPORT"));
+#endif
 		} else if (fstype == "none") {
 			FILE *newDisk = fopen_wrap(temp_line.c_str(), "rb+");
 			if (!newDisk) {
