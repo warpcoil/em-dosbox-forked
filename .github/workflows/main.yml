@@ -1,6 +1,8 @@
 name: build-em-dosbox
 on: [push]
 jobs:
+  job_id:
+    name: build 
     runs-on: ubuntu-latest
     steps:
         - name: Install GNU Autotools
