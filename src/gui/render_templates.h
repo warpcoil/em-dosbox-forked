@@ -131,6 +131,7 @@
 #endif
 #define SRCTYPE Bit16u
 #endif
+#endif
 
 #if SBPP == 16
 #define SC scalerSourceCache.b16
@@ -156,6 +157,7 @@
 #endif
 #define SRCTYPE Bit16u
 #endif
+#endif
 
 #if SBPP == 32
 #define SC scalerSourceCache.b32
@@ -180,6 +182,7 @@
 #endif
 #endif
 #define SRCTYPE Bit32u
+#endif
 #endif
 
 //  C0 C1 C2 D3
