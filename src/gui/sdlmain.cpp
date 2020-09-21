@@ -2950,7 +2950,7 @@ int main(int argc, char* argv[]) {
 #endif
 
 		/* Display Welcometext in the console */
-		LOG_MSG("DOSBox version %s", VERSION_TEXT);
+		LOG_MSG("DOSBox version %s", "0.74-3");
 		LOG_MSG("Copyright 2002-2015 DOSBox Team, published under GNU GPL.");
 		LOG_MSG("---");
 
