@@ -2841,23 +2841,23 @@ static void eraseconfigfile() {
 	exit(0);
 }
 
-static void erasemapperfile() {
-	FILE* g = fopen("dosbox.conf", "r");
-	if (g) {
-		fclose(g);
-		show_warning("Warning: dosbox.conf exists in current working directory.\nKeymapping might not be properly reset.\n"
-			"Please reset configuration as well and delete the dosbox.conf.\n");
-	}
-
-	std::string path, file = MAPPERFILE;
-	Cross::GetPlatformConfigDir(path);
-	path += file;
-	FILE* f = fopen(path.c_str(), "r");
-	if (!f) exit(0);
-	fclose(f);
-	unlink(path.c_str());
-	exit(0);
-}
+//static void erasemapperfile() {
+//	FILE* g = fopen("dosbox.conf", "r");
+//	if (g) {
+//		fclose(g);
+//		show_warning("Warning: dosbox.conf exists in current working directory.\nKeymapping might not be properly reset.\n"
+//			"Please reset configuration as well and delete the dosbox.conf.\n");
+//	}
+//
+//	std::string path, file = MAPPERFILE;
+//	Cross::GetPlatformConfigDir(path);
+//	path += file;
+//	FILE* f = fopen(path.c_str(), "r");
+//	if (!f) exit(0);
+//	fclose(f);
+//	unlink(path.c_str());
+//	exit(0);
+//}
 
 //extern void UI_Init(void);
 int main(int argc, char* argv[]) {
