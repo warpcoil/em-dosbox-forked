@@ -16,6 +16,12 @@ Makefile.in
 /stamp-h1
 /ar-lib
 
+# Visual Studio
+.vs/
+
+# WinMerge Backup files
+*.bak
+
 # End of template. Additional autoconf and automake files follow.
 
 Makefile

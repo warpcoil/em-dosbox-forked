@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2002-2015  The DOSBox Team
+ *  Copyright (C) 2002-2020  The DOSBox Team
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -11,9 +11,9 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *  You should have received a copy of the GNU General Public License along
+ *  with this program; if not, write to the Free Software Foundation, Inc.,
+ *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
 #include <stdio.h>
@@ -49,6 +49,8 @@ extern Bitu cycle_count;
 
 #define CPU_PIC_CHECK 1
 #define CPU_TRAP_CHECK 1
+
+#define CPU_TRAP_DECODER	CPU_Core_Simple_Trap_Run
 
 #define OPCODE_NONE			0x000
 #define OPCODE_0F			0x100
@@ -132,11 +134,6 @@ static INLINE Bit32u Fetchd() {
 
 #define EALookupTable (core.ea_table)
 
-#if defined(FUNARRAY_CORE) && !defined(GET_X86_FUNCTIONS)
-#include "core_funarray.h"
-#include "core_simple_fun.h"
-#endif
-
 Bits CPU_Core_Simple_Run(void) {
 	while (CPU_Cycles-->0) {
 		LOADIP;
@@ -156,9 +153,6 @@ Bits CPU_Core_Simple_Run(void) {
 		cycle_count++;
 #endif
 restart_opcode:
-#if defined(FUNARRAY_CORE) && !defined(GET_X86_FUNCTIONS)
-		FUNARRAY_CODE(core.opcode_index+Fetchb(), x86s_funptr)
-#else /* Switch statement core */
 		switch (core.opcode_index+Fetchb()) {
 
 		#include "core_normal/prefix_none.h"
@@ -167,7 +161,6 @@ restart_opcode:
 		#include "core_normal/prefix_66_0f.h"
 		default:
 		illegal_opcode:
-#endif /* Switch statement core */
 #if C_DEBUG	
 			{
 				Bitu len=(GETIP-reg_eip);
@@ -194,13 +187,12 @@ decode_end:
 	return CBRET_NONE;
 }
 
-// not really used
 Bits CPU_Core_Simple_Trap_Run(void) {
 	Bits oldCycles = CPU_Cycles;
 	CPU_Cycles = 1;
 	cpu.trap_skip = false;
 
-	Bits ret=CPU_Core_Normal_Run();
+	Bits ret=CPU_Core_Simple_Run();
 	if (!cpu.trap_skip) CPU_HW_Interrupt(1);
 	CPU_Cycles = oldCycles-1;
 	cpudecoder = &CPU_Core_Simple_Run;
